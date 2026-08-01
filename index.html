@@ -290,7 +290,65 @@ button.gh{background:transparent}
 .heat i[data-l="3"]{background:color-mix(in srgb,var(--lg) 75%,var(--panel3))}
 .heat i[data-l="4"]{background:var(--lg);border-color:transparent;box-shadow:0 0 10px -2px rgba(79,191,148,.75)}
 
-/* ---------- journal entries ---------- */
+/* ---------- the system ---------- */
+.syspanel{background:linear-gradient(160deg,rgba(69,182,216,.07),var(--panel));
+  border:1px solid rgba(69,182,216,.35);border-radius:var(--r);padding:16px;
+  box-shadow:0 0 40px -18px rgba(69,182,216,.6)}
+.sp-h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;
+  letter-spacing:.18em;color:#45b6d8;margin-bottom:14px}
+.sp-rank{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.sp-rank .rk{width:56px;height:56px;flex:none;display:grid;place-items:center;
+  font-family:var(--mono);font-size:28px;font-weight:700;color:#45b6d8;
+  border:1.5px solid rgba(69,182,216,.5);border-radius:12px;
+  background:rgba(69,182,216,.08);box-shadow:inset 0 0 20px -8px rgba(69,182,216,.9)}
+.sp-rank .rt{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.sp-rank .rl{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.08em;margin-top:2px}
+.statrow{display:grid;grid-template-columns:38px 1fr auto;gap:3px 10px;align-items:center;
+  padding:10px 0;border-top:1px solid var(--line)}
+.statrow.dim{opacity:.5}
+.statrow .sn{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em}
+.statrow .sl{font-size:13px}
+.statrow .dec{font-family:var(--mono);font-size:9.5px;color:var(--warn);letter-spacing:.05em}
+.statrow .sv{font-family:var(--mono);font-size:12.5px;color:var(--tx)}
+.statrow .sbar{grid-column:2/4;height:5px;background:var(--panel3);border-radius:3px;overflow:hidden}
+.statrow .sbar i{display:block;height:100%;border-radius:3px}
+.statrow .sx{grid-column:2/4;font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.06em}
+.quest{background:var(--panel);border:1px solid var(--line2);border-radius:var(--r);
+  padding:13px;margin-bottom:9px;border-left:3px solid var(--faint)}
+.quest[data-t="mandatory"]{border-left-color:var(--warn)}
+.quest[data-t="standard"]{border-left-color:#45b6d8}
+.quest[data-t="bonus"]{border-left-color:var(--lg)}
+.quest.done{opacity:.45}
+.quest .qh{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;color:var(--faint);margin-bottom:7px}
+.quest .qx{color:var(--lg)}
+.quest .qn{font-size:15px;font-weight:600;margin-bottom:5px;letter-spacing:-.01em}
+.quest .qw{font-size:12.5px;color:var(--dim);margin:0 0 11px;line-height:1.5}
+.cqrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.cqrow.done{opacity:.45}
+.cqrow .btnrow{margin-left:auto;flex:none}
+.skrow{display:flex;align-items:center;gap:11px;padding:9px 0;border-top:1px solid var(--line)}
+.skrow .si{font-size:14px}
+.skrow .sname{font-size:13.5px}
+.skrow.got .sname{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em}
+/* system window overlay */
+.swrap{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:26px;
+  background:rgba(3,5,9,.86);backdrop-filter:blur(4px)}
+.swrap.on{display:grid;animation:swin .25s ease}
+@keyframes swin{from{opacity:0}to{opacity:1}}
+.swin{max-width:340px;width:100%;background:linear-gradient(160deg,rgba(69,182,216,.12),#0a0e14);
+  border:1.5px solid rgba(69,182,216,.6);border-radius:14px;padding:26px 22px;text-align:center;
+  box-shadow:0 0 60px -10px rgba(69,182,216,.75);animation:sup .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes sup{from{transform:scale(.9) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.swin .sw-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;color:#45b6d8;margin-bottom:12px}
+.swin .sw-big{font-family:var(--mono);font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;
+  text-shadow:0 0 22px rgba(69,182,216,.6)}
+.swin p{font-size:13px;color:var(--dim);line-height:1.55;margin:0 0 18px}
+#toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(14px);z-index:190;
+  background:var(--panel2);border:1px solid var(--line2);border-radius:20px;padding:9px 16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s}
+#toast.on{opacity:1;transform:translateX(-50%)}
 .entry{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:9px}
 .entry .top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
 .entry .d{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--tx)}
@@ -504,6 +562,71 @@ nav::before{
     <div class="btnrow" style="margin-top:12px"><button class="gh" onclick="resetWeek()">New week</button></div>
   </div>
 
+  <!-- ===== PROFILE ===== -->
+  <div class="shead" style="margin:20px 0 10px"><div><div class="k">Instrument 00</div><h2>Your baseline</h2></div></div>
+  <div class="card">
+    <p class="tiny" style="margin-bottom:12px">Set this once. Everything below — calorie target, protein target, projections — is computed from it.</p>
+    <div class="g2">
+      <label class="f"><span>Sex</span><select id="p-sex"><option value="m">Male</option><option value="f">Female</option></select></label>
+      <label class="f"><span>Age</span><input type="number" id="p-age" inputmode="numeric" placeholder="25"></label>
+      <label class="f"><span>Height cm</span><input type="number" id="p-ht" inputmode="numeric" placeholder="175"></label>
+      <label class="f"><span>Weight kg</span><input type="number" id="p-wt" inputmode="decimal" placeholder="72"></label>
+    </div>
+    <label class="f"><span>Goal</span><select id="p-goal">
+      <option value="lean">Lean bulk — build with minimal fat</option>
+      <option value="maintain">Maintain — recomposition</option>
+      <option value="cut">Cut — lose fat, hold muscle</option>
+    </select></label>
+    <div class="btnrow"><button class="pri" onclick="saveProf()">Save baseline</button></div>
+    <p class="tiny" id="p-msg" style="margin:9px 0 0"></p>
+  </div>
+
+  <!-- ===== TODAY: FUEL + MOVEMENT ===== -->
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Instrument 01</div><h2>Fuel &amp; movement</h2></div><span class="eyebrow" id="fx-date-lab">—</span></div>
+
+  <div class="card">
+    <label class="f"><span>Day</span><input type="date" id="fx-date" onchange="drawFuel()"></label>
+
+    <div class="chead" style="margin-top:4px"><i class="dot"></i><div class="k">Add food</div></div>
+    <label class="f"><span>Search the list, or type your own</span>
+      <input list="foodlist" id="f-name" placeholder="Magerquark, roti, chicken karahi…" oninput="fillFood()">
+    </label>
+    <datalist id="foodlist"></datalist>
+    <div class="g3">
+      <label class="f"><span>Amount</span><input type="number" id="f-amt" inputmode="decimal" placeholder="250" oninput="previewFood()"></label>
+      <label class="f"><span>kcal /100</span><input type="number" id="f-kcal" inputmode="decimal" placeholder="72" oninput="previewFood()"></label>
+      <label class="f"><span>Prot /100</span><input type="number" id="f-pro" inputmode="decimal" placeholder="12" oninput="previewFood()"></label>
+    </div>
+    <p class="tiny" id="f-prev" style="margin:0 0 10px">Pick an item and the per-100 values fill themselves.</p>
+    <div class="btnrow"><button class="pri" onclick="addFood()">Add to day</button><button class="gh" onclick="clrFood()">Clear</button></div>
+    <div id="f-list" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><i class="dot"></i><div class="k">Movement today</div></div>
+    <div class="g2">
+      <label class="f"><span>Steps</span><input type="number" id="a-steps" inputmode="numeric" placeholder="8000" oninput="saveAct()"></label>
+      <label class="f"><span>Walk km</span><input type="number" id="a-walk" inputmode="decimal" placeholder="0" oninput="saveAct()"></label>
+      <label class="f"><span>Run km</span><input type="number" id="a-run" inputmode="decimal" placeholder="0" oninput="saveAct()"></label>
+      <label class="f"><span>Lift min</span><input type="number" id="a-lift" inputmode="numeric" placeholder="45" oninput="saveAct()"></label>
+      <label class="f"><span>Cardio min</span><input type="number" id="a-cardio" inputmode="numeric" placeholder="0" oninput="saveAct()"></label>
+      <label class="f"><span>Weight kg today</span><input type="number" id="a-wt" inputmode="decimal" placeholder="72" oninput="saveAct()"></label>
+    </div>
+    <p class="tiny" style="margin:0">Steps cover incidental walking. Only add <i>walk km</i> for a deliberate walk you'd otherwise not have taken.</p>
+  </div>
+
+  <!-- ===== THE READOUT ===== -->
+  <div class="card" id="fx-readout"></div>
+
+  <!-- ===== TRENDS ===== -->
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Instrument 02</div><h2>Fourteen-day trend</h2></div></div>
+  <div class="card" id="fx-trend"></div>
+
+  <div class="card">
+    <div class="chead"><i class="dot"></i><div class="k">How the numbers work</div></div>
+    <div id="gy-nutri"></div>
+  </div>
+
   <div class="shead" style="margin:20px 0 10px"><div><div class="k">The program</div><h2>Tap a session for the sets</h2></div></div>
   <div class="rows" id="gy-days"></div>
 
@@ -569,6 +692,58 @@ nav::before{
 </section>
 
 <!-- ============ LOG ============ -->
+<section id="s-sy" style="--accent:var(--de)">
+  <div class="shead"><div><div class="k">The System</div><h1>Status</h1></div></div>
+
+  <div id="sy-panel"></div>
+
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Daily</div><h2>Today's quests</h2></div><span class="eyebrow" id="sy-qdate">—</span></div>
+  <div id="sy-quests"></div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="chead"><i class="dot"></i><div class="k">Declare rest</div></div>
+    <p class="tiny" style="margin-bottom:10px">A declared rest day costs nothing — no decay, no broken streak. Use it deliberately instead of vanishing.</p>
+    <div class="btnrow"><button class="gh" onclick="declareRest()">Declare today a rest day</button></div>
+  </div>
+
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Custom</div><h2>Add your own quest</h2></div></div>
+  <div class="card">
+    <p class="tiny" style="margin-bottom:12px">Anything not covered by the three tracks. The System appraises it and assigns XP.</p>
+    <label class="f"><span>What is the task?</span><input id="cq-name" placeholder="Draft the Verpflichtungserklärung email"></label>
+    <div class="g2">
+      <label class="f"><span>Feeds which stat</span><select id="cq-stat">
+        <option value="int">INT · Deutsch</option>
+        <option value="wis">WIS · Education</option>
+        <option value="str">STR · Body</option>
+      </select></label>
+      <label class="f"><span>How long?</span><select id="cq-time">
+        <option value="15">15 minutes</option><option value="45" selected>45 minutes</option>
+        <option value="120">2 hours</option><option value="240">Half a day</option>
+      </select></label>
+    </div>
+    <label class="f"><span>How hard, honestly?</span><select id="cq-diff" onchange="cqPrev()">
+      <option value="triv">Trivial — you could do it tired</option>
+      <option value="norm" selected>Normal — ordinary focused work</option>
+      <option value="hard">Hard — needs your best hours</option>
+      <option value="brut">Brutal — you have been avoiding it</option>
+    </select></label>
+    <p class="tiny" id="cq-prev" style="margin:0 0 10px"></p>
+    <div class="btnrow"><button class="pri" onclick="addCQ()">Register quest</button></div>
+    <div id="cq-list" style="margin-top:12px"></div>
+  </div>
+
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Acquired</div><h2>Skills</h2></div></div>
+  <div class="card" id="sy-skills"></div>
+
+  <div class="shead" style="margin:22px 0 10px"><div><div class="k">Ledger</div><h2>Recent XP</h2></div></div>
+  <div class="card" id="sy-ledger"></div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="chead"><i class="dot"></i><div class="k">How the System works</div></div>
+    <div id="sy-notes"></div>
+  </div>
+</section>
+
 <section id="s-lg" style="--accent:var(--lg)">
   <div class="shead"><div><div class="k">Track 04 · Daily record</div><h1>Log</h1></div></div>
   <p class="sub" style="margin-bottom:14px">One entry a day. Short is fine — "did Tag 04, 3 sets pushups, read one paper" beats an essay you won't write.</p>
@@ -595,6 +770,13 @@ nav::before{
 <div class="foot">Offline · saved on this device · export regularly<br>Solange ich lebe, habe ich unendlich viele Chancen</div>
 </div>
 
+<div class="swrap" id="syswin" onclick="closeSW()">
+  <div class="swin" onclick="event.stopPropagation()">
+    <div id="syswin-b"></div>
+    <button class="pri" onclick="closeSW()">Acknowledge</button>
+  </div>
+</div>
+<div id="toast"></div>
 <nav><div class="nbar">
   <button class="nb on" data-s="home" style="--c:var(--tx)" onclick="go('home')">
     <span class="g"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></span>
@@ -608,6 +790,9 @@ nav::before{
   <button class="nb" data-s="gy" style="--c:var(--gy)" onclick="go('gy')">
     <span class="g"><svg viewBox="0 0 24 24"><path d="M3 9v6M21 9v6M6 6v12M18 6v12M6 12h12"/></svg></span>
     <span class="lb">Body</span><span class="ub"></span></button>
+  <button class="nb" data-s="sy" style="--c:var(--de)" onclick="go('sy')">
+    <span class="g"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5.4 5.6.6-4.2 4 1.2 5.6L12 15.8 6.9 18.6 8.1 13 4 9l5.6-.6z"/></svg></span>
+    <span class="lb">System</span><span class="ub"></span></button>
   <button class="nb" data-s="lg" style="--c:var(--lg)" onclick="go('lg')">
     <span class="g"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 11h6M9 15h4"/></svg></span>
     <span class="lb">Log</span><span class="ub"></span></button>
@@ -997,6 +1182,180 @@ const MATH_NOTES = [
   ["Stamina index","Weighted blend: 60% VO₂max, 20% plank hold, 20% resting heart rate, each scored against age-adjusted bands."],
   ["The projection model","Gains approach a ceiling rather than continuing linearly: projected = current + (ceiling − current) × (1 − e^(−k · weeks · stimulus)). Ceiling depends on training age; stimulus on weekly volume relative to your current max. This is why a fixed 50 pushups a day stops working after a few weeks — the stimulus shrinks as your max grows."]
 ];
+
+/* ===================== FOOD DATABASE — per 100 g unless unit given ===================== */
+/* [name, kcal, protein g, carbs g, fat g, default portion g, unit label] */
+const FOODS=[
+ /* --- protein staples --- */
+ ["Magerquark",72,12,4,0.2,250,"g"],
+ ["Skyr natur",63,11,4,0.2,200,"g"],
+ ["Griechischer Joghurt 2%",73,9,4,2,200,"g"],
+ ["Whey protein powder",380,78,7,5,30,"g"],
+ ["Egg, whole",143,13,1,10,55,"g (1 egg)"],
+ ["Egg white",52,11,1,0.2,33,"g (1 white)"],
+ ["Chicken breast, cooked",165,31,0,3.6,150,"g"],
+ ["Chicken thigh, cooked",209,26,0,11,150,"g"],
+ ["Veal, lean cooked",172,31,0,5,150,"g"],
+ ["Beef mince 10% fat",190,21,0,11,150,"g"],
+ ["Lamb, cooked",258,25,0,17,150,"g"],
+ ["Salmon, cooked",208,20,0,13,150,"g"],
+ ["Tuna, canned in water",116,26,0,1,140,"g"],
+ ["Paneer",265,18,3,21,100,"g"],
+ ["Cottage cheese / Hüttenkäse",98,11,3,4.3,200,"g"],
+ ["Gouda cheese",356,25,2,27,30,"g"],
+ ["Tofu, firm",144,15,3,9,150,"g"],
+ /* --- desi mains --- */
+ ["Chicken karahi",180,17,4,10,300,"g"],
+ ["Chicken biryani",165,9,20,6,350,"g"],
+ ["Daal (masoor/chana), cooked",120,7,17,3,250,"g"],
+ ["Chana masala",130,7,18,4,250,"g"],
+ ["Rajma curry",125,7,18,3,250,"g"],
+ ["Keema (beef mince curry)",210,17,4,14,250,"g"],
+ ["Chicken tikka",190,27,2,8,200,"g"],
+ ["Seekh kebab",240,20,3,17,120,"g"],
+ ["Aloo gosht",160,12,8,9,300,"g"],
+ ["Palak paneer",180,9,7,13,250,"g"],
+ ["Raita",60,3,5,3,150,"g"],
+ /* --- carbs --- */
+ ["Rice, cooked",130,2.7,28,0.3,200,"g"],
+ ["Basmati rice, cooked",121,3,25,0.4,200,"g"],
+ ["Roti / chapati",297,11,46,7,45,"g (1 roti)"],
+ ["Naan",310,9,50,8,90,"g (1 naan)"],
+ ["Paratha",330,7,40,16,80,"g (1)"],
+ ["Rolled oats, dry",379,13,67,7,80,"g"],
+ ["Bread, whole grain",247,10,41,4,50,"g (1 slice)"],
+ ["Brötchen",270,9,52,2,60,"g (1)"],
+ ["Pasta, cooked",158,6,31,1,200,"g"],
+ ["Potato, boiled",87,2,20,0.1,250,"g"],
+ ["Sweet potato, baked",90,2,21,0.1,200,"g"],
+ ["Couscous, cooked",112,4,23,0.2,200,"g"],
+ /* --- fruit & veg --- */
+ ["Banana",89,1.1,23,0.3,120,"g (1)"],
+ ["Apple",52,0.3,14,0.2,150,"g (1)"],
+ ["Berries, mixed",50,1,11,0.4,100,"g"],
+ ["Orange",47,0.9,12,0.1,140,"g (1)"],
+ ["Dates",282,2.5,75,0.4,30,"g"],
+ ["Spinach, cooked",23,3,4,0.4,150,"g"],
+ ["Mixed vegetables",45,2,8,0.4,200,"g"],
+ ["Salad, mixed leaves",17,1.5,3,0.2,100,"g"],
+ ["Cucumber / tomato salad",20,1,4,0.2,200,"g"],
+ /* --- fats & extras --- */
+ ["Peanut butter",588,25,20,50,30,"g"],
+ ["Almonds",579,21,22,50,30,"g"],
+ ["Walnuts",654,15,14,65,30,"g"],
+ ["Olive oil",884,0,0,100,10,"g (1 tbsp)"],
+ ["Butter",717,0.9,0.1,81,10,"g"],
+ ["Ghee",900,0,0,100,10,"g"],
+ ["Milk 1.5%",47,3.4,4.8,1.5,250,"ml"],
+ ["Milk 3.5%",64,3.3,4.7,3.6,250,"ml"],
+ /* --- convenience / eating out --- */
+ ["Döner kebab",215,15,15,11,400,"g"],
+ ["Pizza margherita",266,11,33,10,300,"g"],
+ ["Currywurst mit Pommes",230,9,22,12,400,"g"],
+ ["Protein bar",350,30,35,9,60,"g (1)"],
+ ["Chocolate, milk",535,7,59,30,25,"g"],
+ ["Crisps / chips",536,6,53,34,30,"g"],
+ ["Cola",42,0,10.6,0,330,"ml"],
+ ["Orange juice",45,0.7,10,0.2,250,"ml"],
+ ["Chai with milk & sugar",70,2,10,2.5,200,"ml"],
+ ["Coffee, black",2,0.1,0,0,200,"ml"]
+];
+
+/* Activity energy coefficients — kcal per kg bodyweight */
+const ACT={
+  step:0.0005,        /* per step, scales with bodyweight */
+  walk:0.50,          /* per km walked */
+  run:1.00,           /* per km run */
+  lift:0.075,         /* per minute of resistance training */
+  cardio:0.13         /* per minute of zone-2 cardio */
+};
+const GOALS={
+  cut:      {n:"Cut",       adj:-400, pro:2.0, w:"Lose fat, hold muscle. Aim ~0.5 kg per week down."},
+  maintain: {n:"Maintain",  adj:0,    pro:1.8, w:"Recomposition. Slow, but works well at your training age."},
+  lean:     {n:"Lean bulk", adj:250,  pro:1.8, w:"Build size with minimal fat. Aim ~0.25 kg per week up."}
+};
+const NUTRI_NOTES=[
+  ["Why the target moves daily","Your calorie target isn't a fixed number — it's your BMR plus what you actually did. A 12,000-step day earns more food than a desk day. Fixed targets are why most tracking fails by week three."],
+  ["Mifflin-St Jeor","BMR = 10×weight + 6.25×height − 5×age + 5. The most accurate simple equation there is, but still ±10%. Treat the first fortnight as calibration: if your weight trend disagrees with the maths, trust the scale."],
+  ["Protein first, everything else after","1.6–2.2 g per kg is the range with evidence behind it. Below 1.6 you leave muscle on the table; above 2.2 does nothing extra. Hit protein and the rest is flexible."],
+  ["Weigh trends, not days","Daily weight swings 1–2 kg on water, salt and gut contents. Only the seven-day average means anything — that's the line the chart draws."],
+  ["Steps are the quiet variable","Structured cardio is two or three hours a week. Walking is everything else. Going from 4,000 to 9,000 steps a day is worth more than adding a fourth gym session."],
+  ["Logging beats accuracy","An estimated portion logged every day beats a perfectly weighed one logged twice. Pick the nearest item, accept ±15%, move on."]
+];
+
+/* ===================== THE SYSTEM ===================== */
+/* Three stats. Overall rank is the geometric mean — one neglected path holds
+   the whole thing down. That is the point. */
+const STATS={
+  int:{n:"INT",label:"Deutsch",   c:"var(--de)", desc:"Language acquisition. Trained by speaking, not reading."},
+  wis:{n:"WIS",label:"Education", c:"var(--sk)", desc:"Research and engineering craft. Trained by shipping proofs."},
+  str:{n:"STR",label:"Body",      c:"var(--gy)", desc:"Physical capacity. Trained by consistency, not intensity."}
+};
+const RANKS=[
+  {r:"E",min:1, t:"Awakened",   d:"You have just registered. Nothing is proven yet."},
+  {r:"D",min:4, t:"Novice",     d:"Habits are forming. This is the most fragile stage — most players stop here."},
+  {r:"C",min:8, t:"Practitioner",d:"Consistency established. The Job Change Quest becomes available."},
+  {r:"B",min:13,t:"Adept",      d:"Competent across all three paths. Neglect is no longer possible at this rank."},
+  {r:"A",min:19,t:"Elite",      d:"Rare. Represents sustained work across many months."},
+  {r:"S",min:27,t:"Monarch",    d:"Roughly a year of honest daily work. There is no shortcut to this."}
+];
+/* XP awards — deliberately lopsided toward the things that get avoided */
+const XP={
+  de_voice:50, de_full:40, de_partial:15, de_errlog:15,
+  wis_deep:40, wis_proof:200, wis_read:15,
+  str_lift:30, str_cardio:20, str_steps:20, str_protein:15, str_food:10,
+  log:10, clear:50
+};
+const XP_LABELS={
+  de_voice:["Voice recording","The keystone. Weighted highest because it is the one most often skipped."],
+  de_full:["Full Deutsch block","All six blocks completed."],
+  de_partial:["Partial Deutsch","Showing up broken still counts."],
+  de_errlog:["Error log written","Cheap, and it becomes your real syllabus."],
+  wis_deep:["60 min deep work","Uninterrupted. Phone elsewhere."],
+  wis_proof:["Proof shipped","A rung completed with an artifact. Rare and enormous."],
+  wis_read:["Paper or lecture","Passive input. Weighted low on purpose."],
+  str_lift:["Lift session",""],
+  str_cardio:["Cardio session",""],
+  str_steps:["Step target met",""],
+  str_protein:["Protein target hit",""],
+  str_food:["Food logged","Logging beats accuracy."],
+  log:["Daily log written",""],
+  clear:["Daily Clear","All three quests completed."]
+};
+/* Difficulty appraisal for custom quests */
+const Q_TIME={15:10, 45:25, 120:60, 240:110};
+const Q_DIFF={triv:0.6, norm:1.0, hard:1.5, brut:2.2};
+const Q_DIFF_LABEL={triv:"Trivial",norm:"Normal",hard:"Hard",brut:"Brutal"};
+
+/* Skills — auto-granted. [id, name, stat, condition-text] */
+const SKILLS=[
+  ["perfekt","Perfekt Mastery","int","Complete Deutsch Tag 07"],
+  ["cases","Case Discipline","int","Complete Deutsch Tag 14"],
+  ["clauses","Subordination","int","Complete Deutsch Tag 21"],
+  ["a2","A2 Certified","int","Complete Deutsch Tag 30"],
+  ["voice7","Voice of the Speaker","int","Record 7 days of audio"],
+  ["voice21","Fluent Tongue","int","Record 21 days of audio"],
+  ["shell","Shell Scripting","wis","Complete Rung 01"],
+  ["git","Version Control","wis","Complete Rung 02"],
+  ["python","Python for Data","wis","Complete Rung 03"],
+  ["stats","Statistical Reasoning","wis","Complete Rung 05"],
+  ["nextflow","Nextflow","wis","Complete Rung 06"],
+  ["docker","Containerisation","wis","Complete Rung 07"],
+  ["rnaseq","RNA-seq Analysis","wis","Complete Rung 11"],
+  ["interactome","RNA Interactomics","wis","Complete Rung 16"],
+  ["iron7","Iron Discipline","str","7 lift sessions"],
+  ["iron30","Forged Body","str","30 lift sessions"],
+  ["walker","Tireless","str","10 days at step target"],
+  ["fuel","Fuel Discipline","str","14 days of food logged"]
+];
+const SYS_NOTES=[
+  ["Why the geometric mean","Your overall level is the cube root of INT × WIS × STR, not their sum. Grind one path to twenty while another sits at one, and your rank barely moves. A player who trained only one thing is not strong — the panel refuses to pretend otherwise."],
+  ["Decay, not deletion","A path untouched for three days dims and shows a downward marker. No XP is ever removed. The penalty for disappearing is that your numbers visibly regress, never that the door back in becomes heavier."],
+  ["The Recovery Quest","Return after a gap and the System issues one small mandatory task instead of piling on. Complete it and the decay clears. Re-entry always has a ramp."],
+  ["Rest is declared","Mark a day as Rest and nothing happens — no XP, no decay, no broken streak. The penalty exists only for silent disappearance, which is the actual failure mode."],
+  ["Quests scale to you","Targets read your last seven days. Averaging six thousand steps means the quest asks for seven, not ten. Fixed targets are why tracking apps get ignored by week three."],
+  ["Recovery is a stat","Four consecutive days above three hundred XP and the System will tell you to stop. A machine that only ever says 'more' is not a system, it is a treadmill."]
+];
 </script>
 <script>
 /* ===================== STORAGE ===================== */
@@ -1004,7 +1363,7 @@ const KEY="ops.v2";   /* fresh namespace: nothing carries over from the earlier 
 let MEM=null, PERSIST=true;
 (function(){try{localStorage.setItem("__t","1");localStorage.removeItem("__t")}catch(e){PERSIST=false}})();
 
-const BLANK={de:[],sk:[],gy:[],apps:[],tests:[],journal:[],meta:{}};
+const BLANK={de:[],sk:[],gy:[],apps:[],tests:[],journal:[],meta:{},prof:{},daily:{}};
 function load(){
   if(!PERSIST){return MEM||(MEM=JSON.parse(JSON.stringify(BLANK)))}
   try{const r=localStorage.getItem(KEY);return r?Object.assign(JSON.parse(JSON.stringify(BLANK)),JSON.parse(r)):JSON.parse(JSON.stringify(BLANK))}
@@ -1131,12 +1490,13 @@ function tick(){
 
 /* ===================== NAV ===================== */
 function go(k){
-  ["home","de","sk","gy","lg"].forEach(x=>{
+  ["home","de","sk","gy","sy","lg"].forEach(x=>{
     $("s-"+x).classList.toggle("on",x===k);
     document.querySelector('.nb[data-s="'+x+'"]').classList.toggle("on",x===k);
   });
   window.scrollTo(0,0);
   if(k==="home")drawHome();
+  if(k==="sy")drawSys();
 }
 
 /* ===================== SVG HELPERS ===================== */
@@ -1450,6 +1810,486 @@ function calcProj(){
   $("proj-out").innerHTML=h;
 }
 
+/* ===================== FUEL & MOVEMENT ENGINE ===================== */
+function fxDay(){return $("fx-date").value||today()}
+function rec(d){
+  if(!S.daily)S.daily={};
+  if(!S.daily[d])S.daily[d]={food:[],steps:0,walk:0,run:0,lift:0,cardio:0,wt:null};
+  return S.daily[d];
+}
+function saveProf(){
+  S.prof={sex:$("p-sex").value,age:+$("p-age").value||0,ht:+$("p-ht").value||0,
+          wt:+$("p-wt").value||0,goal:$("p-goal").value};
+  save();
+  $("p-msg").textContent=(S.prof.age&&S.prof.ht&&S.prof.wt)
+    ? "Baseline saved. Targets below now update with what you log."
+    : "Saved, but fill age, height and weight — the targets need all three.";
+  drawFuel();
+}
+function loadProf(){
+  const p=S.prof||{};
+  if(p.sex)$("p-sex").value=p.sex;
+  if(p.age)$("p-age").value=p.age;
+  if(p.ht)$("p-ht").value=p.ht;
+  if(p.wt)$("p-wt").value=p.wt;
+  if(p.goal)$("p-goal").value=p.goal;
+}
+/* current weight = today's entry, else last logged, else profile */
+function curWt(){
+  const d=fxDay(),r=rec(d);
+  if(r.wt)return r.wt;
+  const ks=Object.keys(S.daily||{}).filter(k=>S.daily[k].wt).sort();
+  if(ks.length)return S.daily[ks[ks.length-1]].wt;
+  return (S.prof&&S.prof.wt)||0;
+}
+function bmr(){
+  const p=S.prof||{},w=curWt();
+  if(!p.age||!p.ht||!w)return null;
+  const base=10*w+6.25*p.ht-5*p.age;
+  return p.sex==="f"?base-161:base+5;
+}
+function burn(d){
+  const r=rec(d),w=curWt();if(!w)return 0;
+  return (r.steps||0)*ACT.step*w + (r.walk||0)*ACT.walk*w +
+         (r.run||0)*ACT.run*w + (r.lift||0)*ACT.lift*w + (r.cardio||0)*ACT.cardio*w;
+}
+function tdee(d){
+  const b=bmr();if(b==null)return null;
+  return b*1.2+burn(d);
+}
+function targets(d){
+  const t=tdee(d),w=curWt(),g=GOALS[(S.prof||{}).goal||"lean"];
+  if(t==null||!w)return null;
+  const kcal=t+g.adj, pro=w*g.pro, fat=w*0.8;
+  const carb=Math.max(0,(kcal-pro*4-fat*9)/4);
+  return {kcal:kcal,pro:pro,fat:fat,carb:carb,tdee:t,g:g};
+}
+function eaten(d){
+  const r=rec(d);let k=0,p=0,c=0,f=0;
+  r.food.forEach(x=>{k+=x.k;p+=x.p;c+=x.c||0;f+=x.f||0});
+  return {k:k,p:p,c:c,f:f};
+}
+/* --- food entry --- */
+function fillFood(){
+  const v=$("f-name").value.trim().toLowerCase();
+  const hit=FOODS.find(f=>f[0].toLowerCase()===v);
+  if(hit){$("f-kcal").value=hit[1];$("f-pro").value=hit[2];
+    if(!$("f-amt").value)$("f-amt").value=hit[5];
+    $("f-name").dataset.c=hit[3];$("f-name").dataset.f=hit[4];}
+  previewFood();
+}
+function previewFood(){
+  const a=+$("f-amt").value,k=+$("f-kcal").value,p=+$("f-pro").value;
+  if(!a||!k){$("f-prev").textContent="Pick an item and the per-100 values fill themselves.";return}
+  $("f-prev").innerHTML="That portion is <b>"+Math.round(a*k/100)+" kcal</b> and <b>"+
+    (a*p/100).toFixed(1)+" g protein</b>.";
+}
+function addFood(){
+  const n=$("f-name").value.trim(),a=+$("f-amt").value,k=+$("f-kcal").value,p=+$("f-pro").value;
+  if(!n||!a||!k){$("f-prev").textContent="Needs a name, an amount and a kcal value.";return}
+  const c=+($("f-name").dataset.c||0),f=+($("f-name").dataset.f||0);
+  rec(fxDay()).food.push({n:n,a:a,k:a*k/100,p:a*p/100,c:a*c/100,f:a*f/100});
+  save();clrFood();drawFuel();
+}
+function clrFood(){["f-name","f-amt","f-kcal","f-pro"].forEach(i=>$(i).value="");
+  $("f-name").dataset.c="";$("f-name").dataset.f="";
+  $("f-prev").textContent="Pick an item and the per-100 values fill themselves.";}
+function delFood(i){rec(fxDay()).food.splice(i,1);save();drawFuel()}
+function saveAct(){
+  const r=rec(fxDay());
+  r.steps=+$("a-steps").value||0; r.walk=+$("a-walk").value||0;
+  r.run=+$("a-run").value||0;     r.lift=+$("a-lift").value||0;
+  r.cardio=+$("a-cardio").value||0; r.wt=+$("a-wt").value||null;
+  save();drawFuel();
+}
+/* --- rendering --- */
+function drawFuel(){
+  const d=fxDay(),r=rec(d);
+  $("fx-date-lab").textContent=new Date(d+"T12:00").toLocaleDateString("en-GB",{weekday:"short",day:"2-digit",month:"short"});
+  $("a-steps").value=r.steps||""; $("a-walk").value=r.walk||"";
+  $("a-run").value=r.run||"";     $("a-lift").value=r.lift||"";
+  $("a-cardio").value=r.cardio||""; $("a-wt").value=r.wt||"";
+
+  /* food list */
+  if(!r.food.length){$("f-list").innerHTML='<div class="empty">Nothing logged for this day.</div>'}
+  else{
+    $("f-list").innerHTML='<div class="tscroll"><table style="min-width:420px"><thead><tr><th>Item</th><th>Amt</th><th>kcal</th><th>Prot</th><th></th></tr></thead><tbody>'+
+      r.food.map((x,i)=>'<tr><td><b>'+esc(x.n)+'</b></td><td class="n">'+Math.round(x.a)+'</td>'+
+      '<td class="m">'+Math.round(x.k)+'</td><td class="m">'+x.p.toFixed(1)+' g</td>'+
+      '<td><button class="gh" style="padding:4px 8px;font-size:9px" onclick="delFood('+i+')">Del</button></td></tr>').join("")+
+      '</tbody></table></div>';
+  }
+
+  /* readout */
+  const T=targets(d),E=eaten(d);
+  if(!T){
+    $("fx-readout").innerHTML='<div class="chead"><i class="dot"></i><div class="k">Today\'s balance</div></div>'+
+      '<div class="empty">Fill in your baseline above — age, height and weight — and the targets appear here.</div>';
+  }else{
+    const dk=E.k-T.kcal, dp=E.p-T.pro;
+    const pct=v=>Math.max(0,Math.min(100,v));
+    const bar=(lab,got,tgt,unit,col)=>
+      '<div class="barrow"><div class="n">'+lab+'</div>'+
+      '<div class="bar" style="--accent:'+col+'"><i style="width:'+pct(got/tgt*100)+'%"></i></div>'+
+      '<div class="v">'+Math.round(got)+'</div></div>'+
+      '<p class="tiny" style="margin:-4px 0 9px">target '+Math.round(tgt)+' '+unit+'</p>';
+    $("fx-readout").innerHTML=
+      '<div class="chead"><i class="dot pulse"></i><div class="k">Today\'s balance</div><div class="r">'+T.g.n+'</div></div>'+
+      '<div class="big">'+
+        '<div class="bigcell"><div class="v" style="color:'+(Math.abs(dk)<200?"var(--lg)":"var(--gy)")+'">'+(dk>0?"+":"")+Math.round(dk)+'</div><div class="l">kcal vs target</div>'+
+          '<div class="t" style="color:var(--dim)">'+Math.round(E.k)+' / '+Math.round(T.kcal)+'</div></div>'+
+        '<div class="bigcell"><div class="v" style="color:'+(dp>=0?"var(--lg)":"var(--warn)")+'">'+Math.round(E.p)+'</div><div class="l">protein g</div>'+
+          '<div class="t" style="color:var(--dim)">target '+Math.round(T.pro)+' g</div></div>'+
+      '</div>'+
+      bar("Energy",E.k,T.kcal,"kcal","var(--gy)")+
+      bar("Protein",E.p,T.pro,"g","var(--lg)")+
+      bar("Carbs",E.c,T.carb,"g","var(--de)")+
+      bar("Fat",E.f,T.fat,"g","var(--sk)")+
+      '<div class="stats" style="margin-top:6px">'+
+        '<div class="stat"><b>'+Math.round(bmr())+'</b><span>BMR</span></div>'+
+        '<div class="stat"><b>'+Math.round(burn(d))+'</b><span>Activity kcal</span></div>'+
+        '<div class="stat"><b>'+Math.round(T.tdee)+'</b><span>Burned total</span></div>'+
+        '<div class="stat"><b>'+(r.steps||0)+'</b><span>Steps</span></div>'+
+      '</div>'+
+      '<div class="note" style="--accent:var(--gy)"><div class="h">Read</div><p>'+verdict(dk,dp,T,r)+'</p></div>';
+  }
+  drawTrend();
+}
+function verdict(dk,dp,T,r){
+  const out=[];
+  if(dp<-20)out.push("Protein is <b>"+Math.round(-dp)+" g short</b> — that's the one worth fixing before bed. A tub of Magerquark closes most of it.");
+  else if(dp>=0)out.push("Protein target met. That's the part that matters most.");
+  else out.push("Protein is close enough.");
+  if(dk>350)out.push("You're <b>"+Math.round(dk)+" kcal over</b>. One day means nothing; check the seven-day average below before changing anything.");
+  else if(dk<-450)out.push("Well under. Chronic under-eating on lifting days is where lifts stall and sleep gets worse.");
+  else out.push("Energy is in a sensible band for today.");
+  if((r.steps||0)&&r.steps<5000)out.push("Steps are low — this is the cheapest lever you have.");
+  return out.join(" ");
+}
+function drawTrend(){
+  const ks=[],t=new Date(nowSafe());
+  for(let i=13;i>=0;i--){const dt=new Date(t);dt.setDate(t.getDate()-i);ks.push(dayKey(dt))}
+  const have=ks.filter(k=>S.daily&&S.daily[k]&&(S.daily[k].food.length||S.daily[k].steps||S.daily[k].wt));
+  if(!have.length){$("fx-trend").innerHTML='<div class="empty">No days logged yet.<br>Two weeks of data is where this gets interesting.</div>';return}
+
+  const kc=ks.map(k=>S.daily[k]?eaten(k).k:0);
+  const pr=ks.map(k=>S.daily[k]?eaten(k).p:0);
+  const st=ks.map(k=>S.daily[k]?(S.daily[k].steps||0):0);
+  const wts=ks.map(k=>S.daily[k]&&S.daily[k].wt?S.daily[k].wt:null);
+  const logged=kc.filter(x=>x>0);
+  const avgK=logged.length?logged.reduce((a,b)=>a+b,0)/logged.length:0;
+  const prL=pr.filter(x=>x>0);
+  const avgP=prL.length?prL.reduce((a,b)=>a+b,0)/prL.length:0;
+  const stL=st.filter(x=>x>0);
+  const avgS=stL.length?stL.reduce((a,b)=>a+b,0)/stL.length:0;
+
+  /* weight trend: first vs last available */
+  const wv=wts.filter(x=>x!=null);
+  let wtxt="—",wdelta=null;
+  if(wv.length>=2){wdelta=wv[wv.length-1]-wv[0];wtxt=(wdelta>0?"+":"")+wdelta.toFixed(1)+" kg"}
+  else if(wv.length===1)wtxt=wv[0].toFixed(1)+" kg";
+
+  const T=targets(today());
+  const spark=(arr,col,max)=>{
+    const m=max||Math.max.apply(null,arr.concat([1]));
+    return '<div class="strip" style="height:34px;--accent:'+col+'">'+arr.map(v=>
+      '<i style="height:'+Math.max(4,v/m*34)+'px;background:'+(v?col:"var(--panel3)")+';border-color:transparent"></i>').join("")+'</div>';
+  };
+  $("fx-trend").innerHTML=
+    '<div class="chead"><i class="dot"></i><div class="k">Last 14 days</div><div class="r">'+have.length+' logged</div></div>'+
+    '<div class="stats" style="margin-bottom:14px">'+
+      '<div class="stat"><b>'+Math.round(avgK)+'</b><span>Avg kcal</span></div>'+
+      '<div class="stat"><b>'+Math.round(avgP)+'</b><span>Avg protein</span></div>'+
+      '<div class="stat"><b>'+Math.round(avgS)+'</b><span>Avg steps</span></div>'+
+      '<div class="stat"><b>'+wtxt+'</b><span>Weight Δ</span></div>'+
+    '</div>'+
+    '<div class="eyebrow" style="margin-bottom:5px;color:var(--gy)">Energy intake</div>'+spark(kc,"#d99544")+
+    '<div class="eyebrow" style="margin:12px 0 5px;color:var(--lg)">Protein</div>'+spark(pr,"#4fbf94")+
+    '<div class="eyebrow" style="margin:12px 0 5px;color:var(--de)">Steps</div>'+spark(st,"#45b6d8")+
+    '<div class="note" style="--accent:var(--lg);margin-top:14px"><div class="h">Assessment</div><p>'+
+      trendRead(avgK,avgP,avgS,wdelta,T,have.length)+'</p></div>';
+}
+function trendRead(avgK,avgP,avgS,wdelta,T,n){
+  const o=[];
+  if(n<5)return "Only "+n+" day"+(n>1?"s":"")+" logged. Give it a week before reading anything into these numbers — short samples mostly measure noise.";
+  if(T){
+    const gap=avgK-T.kcal;
+    if(Math.abs(gap)<150)o.push("Your average intake is tracking your target closely.");
+    else if(gap>0)o.push("You're averaging <b>"+Math.round(gap)+" kcal above</b> target.");
+    else o.push("You're averaging <b>"+Math.round(-gap)+" kcal below</b> target.");
+    if(avgP<T.pro*0.85)o.push("Protein is averaging under target — the single highest-return fix on this page.");
+    else o.push("Protein is holding up well across the fortnight.");
+  }
+  if(wdelta!=null){
+    const perWk=wdelta/2;
+    if(Math.abs(perWk)<0.15)o.push("Weight is essentially flat — that's maintenance, whatever the maths predicted.");
+    else if(perWk>0.45)o.push("Gaining about "+perWk.toFixed(2)+" kg a week — faster than a lean bulk wants. Trim roughly 200 kcal.");
+    else if(perWk>0)o.push("Gaining "+perWk.toFixed(2)+" kg a week. That's in the right band for building.");
+    else if(perWk<-0.75)o.push("Dropping "+Math.abs(perWk).toFixed(2)+" kg a week — fast enough to cost muscle. Add food.");
+    else o.push("Dropping "+Math.abs(perWk).toFixed(2)+" kg a week, which is a sustainable rate.");
+    o.push("<b>Trust this line over the calculator</b> — the scale is the only real feedback.");
+  }else o.push("Log your weight a few mornings a week and this becomes far more useful.");
+  if(avgS&&avgS<6000)o.push("Steps averaging "+Math.round(avgS)+". Pushing toward 8–10k is worth more than another session.");
+  return o.join(" ");
+}
+
+/* ===================== THE SYSTEM ENGINE ===================== */
+function sys(){
+  if(!S.sys)S.sys={xp:{int:0,wis:0,str:0},ledger:[],skills:[],cq:[],quests:{},rest:[],seen:{}};
+  ["int","wis","str"].forEach(k=>{if(S.sys.xp[k]==null)S.sys.xp[k]=0});
+  if(!S.sys.ledger)S.sys.ledger=[];if(!S.sys.skills)S.sys.skills=[];
+  if(!S.sys.cq)S.sys.cq=[];if(!S.sys.quests)S.sys.quests={};
+  if(!S.sys.rest)S.sys.rest=[];if(!S.sys.seen)S.sys.seen={};
+  return S.sys;
+}
+/* rising cost: level L costs 100*L^1.4 */
+function lvlFromXp(x){let l=1,need=100;while(x>=need){x-=need;l++;need=Math.round(100*Math.pow(l,1.4))}return l}
+function xpInLvl(x){let l=1,need=100;while(x>=need){x-=need;l++;need=Math.round(100*Math.pow(l,1.4))}return{cur:x,need:need}}
+function statLvl(k){return lvlFromXp(sys().xp[k]||0)}
+function overall(){
+  const a=statLvl("int"),b=statLvl("wis"),c=statLvl("str");
+  return Math.max(1,Math.floor(Math.cbrt(a*b*c)));
+}
+function rankOf(l){let r=RANKS[0];RANKS.forEach(x=>{if(l>=x.min)r=x});return r}
+/* days since a stat last gained XP */
+function dormancy(k){
+  const e=sys().ledger.filter(x=>x.s===k);
+  if(!e.length)return 99;
+  return Math.round((new Date(today()+"T12:00")-new Date(e[0].d+"T12:00"))/864e5);
+}
+function award(stat,key,note){
+  const S_=sys(),amt=XP[key];if(!amt)return;
+  const d=today();
+  if(S_.ledger.some(x=>x.d===d&&x.k===key&&x.s===stat))return; /* once per day per key */
+  const before={int:statLvl("int"),wis:statLvl("wis"),str:statLvl("str"),ov:overall()};
+  S_.xp[stat]=(S_.xp[stat]||0)+amt;
+  S_.ledger.unshift({d:d,s:stat,k:key,x:amt,n:note||(XP_LABELS[key]?XP_LABELS[key][0]:key)});
+  if(S_.ledger.length>200)S_.ledger.length=200;
+  save();
+  const after={int:statLvl("int"),wis:statLvl("wis"),str:statLvl("str"),ov:overall()};
+  checkSkills();
+  if(after[stat]>before[stat])systemWindow("levelup",{stat:stat,lvl:after[stat]});
+  else if(after.ov>before.ov)systemWindow("rankup",{lvl:after.ov});
+  else toast("+"+amt+" XP · "+STATS[stat].n);
+  drawSys();
+}
+function awardCustom(stat,amt,name){
+  const S_=sys();
+  S_.xp[stat]=(S_.xp[stat]||0)+amt;
+  S_.ledger.unshift({d:today(),s:stat,k:"custom",x:amt,n:name});
+  save();checkSkills();toast("+"+amt+" XP · "+STATS[stat].n);drawSys();
+}
+/* ---- skills: auto-granted, never self-reported ---- */
+function skillMet(id){
+  const de=(S.de||[]).filter(Boolean).length, sk=(S.sk||[]).filter(Boolean).length;
+  const led=sys().ledger;
+  const cnt=k=>led.filter(x=>x.k===k).length;
+  const days=(S.daily||{});
+  switch(id){
+    case"perfekt":return (S.de||[])[6];
+    case"cases":return (S.de||[])[13];
+    case"clauses":return (S.de||[])[20];
+    case"a2":return (S.de||[])[29];
+    case"voice7":return cnt("de_voice")>=7;
+    case"voice21":return cnt("de_voice")>=21;
+    case"shell":return (S.sk||[])[0];
+    case"git":return (S.sk||[])[1];
+    case"python":return (S.sk||[])[2];
+    case"stats":return (S.sk||[])[4];
+    case"nextflow":return (S.sk||[])[5];
+    case"docker":return (S.sk||[])[6];
+    case"rnaseq":return (S.sk||[])[10];
+    case"interactome":return (S.sk||[])[15];
+    case"iron7":return cnt("str_lift")>=7;
+    case"iron30":return cnt("str_lift")>=30;
+    case"walker":return cnt("str_steps")>=10;
+    case"fuel":return Object.keys(days).filter(k=>days[k].food&&days[k].food.length).length>=14;
+  }
+  return false;
+}
+function checkSkills(){
+  const S_=sys();
+  SKILLS.forEach(s=>{
+    if(S_.skills.indexOf(s[0])<0 && skillMet(s[0])){
+      S_.skills.push(s[0]);
+      S_.xp[s[2]]=(S_.xp[s[2]]||0)+25;
+      save();
+      systemWindow("skill",{name:s[1],stat:s[2]});
+    }
+  });
+}
+/* ---- quests: generated from actual gaps ---- */
+function avgSteps(){
+  const d=S.daily||{},v=Object.keys(d).map(k=>d[k].steps||0).filter(x=>x>0).slice(-7);
+  return v.length?v.reduce((a,b)=>a+b,0)/v.length:0;
+}
+function genQuests(){
+  const d=today(),S_=sys();
+  if(S_.quests[d])return S_.quests[d];
+  const q=[],led=S_.ledger;
+  const lastVoice=led.find(x=>x.k==="de_voice");
+  const vGap=lastVoice?Math.round((new Date(d+"T12:00")-new Date(lastVoice.d+"T12:00"))/864e5):99;
+  /* mandatory = biggest gap */
+  const gaps=[{s:"int",g:dormancy("int")},{s:"wis",g:dormancy("wis")},{s:"str",g:dormancy("str")}]
+    .sort((a,b)=>b.g-a.g);
+  const worst=gaps[0];
+  if(vGap>=2)q.push({t:"mandatory",s:"int",k:"de_voice",
+    n:"Record today's audio",w:vGap>90?"No recording has ever been logged. This is the keystone of the entire Deutsch path.":"It has been "+vGap+" days since you last recorded. The [Speech] path is decaying."});
+  else if(worst.g>=3)q.push({t:"mandatory",s:worst.s,k:worst.s==="wis"?"wis_deep":worst.s==="str"?"str_lift":"de_partial",
+    n:worst.s==="wis"?"60 minutes of deep work":worst.s==="str"?"One session — lift or cardio":"One Deutsch block",
+    w:STATS[worst.s].label+" has been dormant for "+worst.g+" days."});
+  else q.push({t:"mandatory",s:"int",k:"de_full",n:"Complete today's Deutsch block",w:"Scheduled work. All six blocks."});
+  /* standard */
+  q.push({t:"standard",s:"wis",k:"wis_deep",n:"60 minutes of deep work",w:"Uninterrupted. Phone in another room."});
+  /* bonus — scaled to recent behaviour */
+  const av=avgSteps(),tgt=av?Math.round((av+1200)/500)*500:6000;
+  q.push({t:"bonus",s:"str",k:"str_steps",n:tgt.toLocaleString()+" steps",
+    w:av?"Your seven-day average is "+Math.round(av).toLocaleString()+". This asks for slightly more, not double.":"A starting target. It will adapt to you."});
+  S_.quests[d]=q;save();return q;
+}
+function doQuest(i){
+  const d=today(),q=sys().quests[d][i];
+  if(q.done)return;
+  q.done=true;save();
+  award(q.s,q.k,q.n);
+  const all=sys().quests[d];
+  if(all.every(x=>x.done)){
+    sys().xp.wis+=0;
+    const S_=sys();
+    S_.ledger.unshift({d:d,s:"int",k:"clear",x:XP.clear,n:"Daily Clear"});
+    S_.xp.int+=Math.round(XP.clear/3);S_.xp.wis+=Math.round(XP.clear/3);S_.xp.str+=Math.round(XP.clear/3);
+    save();systemWindow("clear",{});
+  }
+  drawSys();
+}
+function declareRest(){
+  const S_=sys(),d=today();
+  if(S_.rest.indexOf(d)<0){S_.rest.push(d);save()}
+  systemWindow("rest",{});drawSys();
+}
+/* ---- custom quests ---- */
+function cqXp(){return Math.round(Q_TIME[$("cq-time").value]*Q_DIFF[$("cq-diff").value])}
+function cqPrev(){
+  const S_=sys(),n=S_.cq.length;
+  const hard=S_.cq.filter(c=>c.df==="hard"||c.df==="brut").length;
+  let warn="";
+  if(n>=5&&hard/n>0.7)warn=" <span style='color:var(--warn)'>Your quests average Hard or above. Either this is a genuinely brutal stretch, or the appraisal is drifting.</span>";
+  $("cq-prev").innerHTML="The System appraises this at <b>"+cqXp()+" XP</b>."+warn;
+}
+function addCQ(){
+  const n=$("cq-name").value.trim();if(!n){$("cq-prev").textContent="Name the task first.";return}
+  sys().cq.unshift({n:n,s:$("cq-stat").value,tm:+$("cq-time").value,df:$("cq-diff").value,x:cqXp(),done:false,d:today()});
+  save();$("cq-name").value="";drawSys();toast("Quest registered");
+}
+function doCQ(i){
+  const c=sys().cq[i];if(c.done)return;
+  c.done=true;save();awardCustom(c.s,c.x,c.n);drawSys();
+}
+function delCQ(i){sys().cq.splice(i,1);save();drawSys()}
+/* ---- the system window ---- */
+function systemWindow(type,o){
+  const box=$("syswin"),body=$("syswin-b");
+  let h="";
+  if(type==="levelup")h='<div class="sw-k">Level Up</div><div class="sw-big">'+STATS[o.stat].n+' &nbsp;Lv '+o.lvl+'</div>'+
+    '<p>'+STATS[o.stat].label+' has increased. '+STATS[o.stat].desc+'</p>';
+  else if(type==="rankup"){const r=rankOf(o.lvl);
+    h='<div class="sw-k">Rank Advancement</div><div class="sw-big">'+r.r+'-Rank</div>'+
+    '<p><b>'+r.t+'.</b> '+r.d+'</p>';}
+  else if(type==="skill")h='<div class="sw-k">Skill Acquired</div><div class="sw-big">['+o.name+']</div>'+
+    '<p>'+STATS[o.stat].n+' +25. The System has recorded this permanently.</p>';
+  else if(type==="clear")h='<div class="sw-k">Daily Quest Complete</div><div class="sw-big">Clear</div>'+
+    '<p>All three quests completed. Bonus XP distributed across every path.</p>';
+  else if(type==="rest")h='<div class="sw-k">Rest Declared</div><div class="sw-big">Recovery</div>'+
+    '<p>No decay, no broken streak, no penalty. Recovery is a stat.</p>';
+  else if(type==="warn")h='<div class="sw-k">Notice</div><div class="sw-big">Overextension</div>'+
+    '<p>'+o.msg+'</p>';
+  body.innerHTML=h;box.classList.add("on");
+}
+function closeSW(){$("syswin").classList.remove("on")}
+function toast(msg){
+  const t=$("toast");t.textContent=msg;t.classList.add("on");
+  clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("on"),1900);
+}
+/* ---- render ---- */
+function drawSys(){
+  const S_=sys(),ov=overall(),r=rankOf(ov);
+  const bar=k=>{
+    const l=statLvl(k),p=xpInLvl(S_.xp[k]||0),dm=dormancy(k),dim=dm>=3;
+    return '<div class="statrow'+(dim?' dim':'')+'">'+
+      '<div class="sn" style="color:'+STATS[k].c+'">'+STATS[k].n+'</div>'+
+      '<div class="sl">'+STATS[k].label+(dim?' <span class="dec">↓ dormant '+dm+'d</span>':'')+'</div>'+
+      '<div class="sv">Lv '+l+'</div>'+
+      '<div class="sbar"><i style="width:'+Math.round(p.cur/p.need*100)+'%;background:'+STATS[k].c+'"></i></div>'+
+      '<div class="sx">'+p.cur+' / '+p.need+'</div></div>';
+  };
+  $("sy-panel").innerHTML='<div class="syspanel">'+
+    '<div class="sp-h"><span>◆ STATUS</span><span>'+(S.meta&&S.meta.first?"PLAYER":"UNREGISTERED")+'</span></div>'+
+    '<div class="sp-rank"><div class="rk">'+r.r+'</div><div><div class="rt">'+r.t+'</div>'+
+      '<div class="rl">Overall Level '+ov+'</div></div></div>'+
+    '<p class="tiny" style="margin:0 0 14px;color:var(--dim)">'+r.d+'</p>'+
+    bar("int")+bar("wis")+bar("str")+
+    '<p class="tiny" style="margin:12px 0 0;color:var(--faint)">Overall is the geometric mean of all three. A neglected path holds the whole rank down.</p>'+
+  '</div>';
+
+  /* quests */
+  const qs=genQuests(),d=today(),resting=S_.rest.indexOf(d)>=0;
+  $("sy-qdate").textContent=new Date(d+"T12:00").toLocaleDateString("en-GB",{weekday:"short",day:"2-digit",month:"short"});
+  if(resting){
+    $("sy-quests").innerHTML='<div class="card"><div class="empty">Rest declared for today.<br>No decay, no penalty. Come back tomorrow.</div></div>';
+  }else{
+    $("sy-quests").innerHTML=qs.map((q,i)=>
+      '<div class="quest'+(q.done?' done':'')+'" data-t="'+q.t+'">'+
+        '<div class="qh"><span class="qt">'+q.t.toUpperCase()+'</span><span class="qx">+'+XP[q.k]+' XP</span></div>'+
+        '<div class="qn">'+esc(q.n)+'</div>'+
+        '<p class="qw">'+q.w+'</p>'+
+        '<button class="'+(q.done?"gh":"pri")+'" onclick="doQuest('+i+')"'+(q.done?" disabled":"")+'>'+
+        (q.done?"Complete":"Mark complete")+'</button>'+
+      '</div>').join("");
+  }
+
+  /* custom quests */
+  cqPrev();
+  const act=S_.cq.filter(c=>!c.done),dn=S_.cq.filter(c=>c.done);
+  $("cq-list").innerHTML=!S_.cq.length?'<div class="empty">No custom quests registered.</div>':
+    (act.concat(dn)).map(c=>{const i=S_.cq.indexOf(c);
+      return '<div class="cqrow'+(c.done?' done':'')+'">'+
+      '<div><b>'+esc(c.n)+'</b><br><span class="tiny">'+STATS[c.s].n+' · '+Q_DIFF_LABEL[c.df]+' · '+c.x+' XP</span></div>'+
+      '<div class="btnrow">'+(c.done?'':'<button class="pri" style="padding:6px 10px;font-size:9px" onclick="doCQ('+i+')">Done</button>')+
+      '<button class="gh" style="padding:6px 9px;font-size:9px" onclick="delCQ('+i+')">Del</button></div></div>';
+    }).join("");
+
+  /* skills */
+  const have=S_.skills;
+  $("sy-skills").innerHTML='<p class="tiny" style="margin-bottom:12px">Granted automatically when the condition is met. '+have.length+' of '+SKILLS.length+' acquired.</p>'+
+    SKILLS.map(s=>{const got=have.indexOf(s[0])>=0;
+    return '<div class="skrow'+(got?' got':'')+'">'+
+      '<div class="si" style="color:'+(got?STATS[s[2]].c:"var(--faint)")+'">'+(got?"◆":"◇")+'</div>'+
+      '<div><div class="sname">'+(got?"["+s[1]+"]":s[1])+'</div>'+
+      '<div class="tiny" style="color:var(--faint)">'+s[3]+'</div></div>'+
+      '<div class="tiny" style="margin-left:auto;color:'+(got?STATS[s[2]].c:"var(--faint)")+'">'+STATS[s[2]].n+'</div></div>';
+  }).join("");
+
+  /* ledger */
+  $("sy-ledger").innerHTML=!S_.ledger.length?'<div class="empty">No XP recorded yet.</div>':
+    '<div class="tscroll"><table style="min-width:380px"><thead><tr><th>Date</th><th>Stat</th><th>Source</th><th>XP</th></tr></thead><tbody>'+
+    S_.ledger.slice(0,25).map(x=>'<tr><td class="m">'+x.d.slice(5)+'</td>'+
+    '<td style="color:'+STATS[x.s].c+'" class="m">'+STATS[x.s].n+'</td><td>'+esc(x.n)+'</td>'+
+    '<td class="n">+'+x.x+'</td></tr>').join("")+'</tbody></table></div>';
+
+  $("sy-notes").innerHTML=SYS_NOTES.map((p,i)=>
+    '<div style="padding:10px 0;border-top:'+(i?"1px solid var(--line)":"0")+'">'+
+    '<div class="eyebrow" style="color:var(--de);margin-bottom:4px">'+p[0]+'</div>'+
+    '<p class="tiny" style="margin:0;color:var(--dim)">'+p[1]+'</p></div>').join("");
+
+  /* overextension check */
+  const last4=[0,1,2,3].map(i=>{const dt=new Date(nowSafe());dt.setDate(dt.getDate()-i);const k=dayKey(dt);
+    return S_.ledger.filter(x=>x.d===k).reduce((a,b)=>a+b.x,0)});
+  if(last4.every(x=>x>300)&&!S_.seen.overext){
+    S_.seen.overext=true;save();
+    setTimeout(()=>systemWindow("warn",{msg:"Four consecutive days above three hundred XP. The Player is overextending. Recovery is a stat — take a declared rest day before this becomes a crash."}),700);
+  }
+}
+
 /* ===================== RENDER: LOG ===================== */
 function saveJ(){
   const d=$("j-date").value||today();
@@ -1569,6 +2409,14 @@ function boot(){
   drawEngine();drawRes();drawMethods();drawDe();
   drawTables();drawSk();drawApps();
   drawGy();
+  $("foodlist").innerHTML=FOODS.map(f=>'<option value="'+f[0]+'">'+f[1]+' kcal · '+f[2]+' g protein per 100</option>').join("");
+  $("gy-nutri").innerHTML=NUTRI_NOTES.map((p,i)=>
+    '<div style="padding:10px 0;border-top:'+(i?"1px solid var(--line)":"0")+'">'+
+    '<div class="eyebrow" style="color:var(--gy);margin-bottom:4px">'+p[0]+'</div>'+
+    '<p class="tiny" style="margin:0;color:var(--dim)">'+p[1]+'</p></div>').join("");
+  if(!$("fx-date").value)$("fx-date").value=today();
+  loadProf();drawFuel();
+  drawSys();
   $("j-date").value=today();
   drawJ();drawHome();
   $("storenote").textContent=PERSIST
