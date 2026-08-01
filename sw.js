@@ -1,5 +1,5 @@
 /* Operations PWA service worker — offline-first cache */
-const CACHE = "ops-v1";
+const CACHE = "ops-v3";
 const ASSETS = [
   "./",
   "./index.html",
